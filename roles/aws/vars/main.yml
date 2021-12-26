@@ -1,0 +1,9 @@
+---
+# vars file for aws
+keypair: newnew
+instance_type: t2.small
+security_group: default
+image: ami-096fda3c22c1c990a
+region: us-east-1
+ansible_user: ec2-user
+ansible_ssh_private_key_file: ~/.ssh/newnew.pem
