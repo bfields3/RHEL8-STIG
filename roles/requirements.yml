@@ -1,0 +1,6 @@
+---
+roles:
+  - name: redhatofficial.rhel8_stig
+
+collections:
+  - name: amazon.aws
