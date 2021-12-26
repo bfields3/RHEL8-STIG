@@ -1,0 +1,21 @@
+---
+# tasks file for roles/configure
+- name: Subscribe to RH
+  redhat_subscription:
+    state: present
+    username: "{{ redhat_username }}"
+    password: "{{ redhat_password }}"
+    auto_attach: true
+- name: Install a list of packages
+  yum:
+    name:
+      - tree
+      - vim
+      - skopeo
+      - podman
+    state: present
+
+- name: Ensure we have the proper Ansible
+  copy:
+    src: ansible-automation-platform-setup-2.1.0-1.tar.gz
+    dest: /home/ec2-user/
