@@ -15,4 +15,4 @@
     - vault.yaml
   roles:
     - configure
-    - RedHatOfficial.rhel8_stig
+#    - RedHatOfficial.rhel8_stig

@@ -13,9 +13,17 @@
       - vim
       - skopeo
       - podman
+      - git
     state: present
 
 - name: Ensure we have the proper Ansible
-  copy:
+  ansible.builtin.unarchive:
     src: ansible-automation-platform-setup-2.1.0-1.tar.gz
     dest: /home/ec2-user/
+  ignore_errors: True
+
+- name: Pull latest OpenShift CLI
+  ansible.builtin.unarchive:
+    src: https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable/openshift-client-linux.tar.gz
+    dest: /usr/local/bin/
+    remote_src: yes
