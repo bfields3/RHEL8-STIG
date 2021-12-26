@@ -6,3 +6,13 @@
     - vault.yaml
   roles:
     - aws
+
+- name: Configure instance(s)
+  hosts: launched
+  become: True
+  gather_facts: True
+  vars_files:
+    - vault.yaml
+  roles:
+    - configure
+    - RedHatOfficial.rhel8_stig
