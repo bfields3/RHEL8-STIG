@@ -6,6 +6,7 @@
     username: "{{ redhat_username }}"
     password: "{{ redhat_password }}"
     auto_attach: true
+    
 - name: Install a list of packages
   yum:
     name:
