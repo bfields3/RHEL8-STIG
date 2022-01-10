@@ -6,7 +6,7 @@
     username: "{{ redhat_username }}"
     password: "{{ redhat_password }}"
     auto_attach: true
-    
+
 - name: Install a list of packages
   yum:
     name:
@@ -15,6 +15,8 @@
       - skopeo
       - podman
       - git
+      - jq
+      - python3-pip
     state: present
 
 - name: Ensure we have the proper Ansible
@@ -28,3 +30,20 @@
     src: https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable/openshift-client-linux.tar.gz
     dest: /usr/local/bin/
     remote_src: yes
+
+- name: Install AWSCKI
+  pip:
+    name: awscli
+    extra_args: --upgrade
+    executable: pip3
+
+- name: Configure AWS.
+  shell: aws configure set {{ item.key }} {{ item.value }}
+  no_log: True
+  with_dict:
+    aws_access_key_id: "{{ aws_access_key_id }}"
+    aws_secret_access_key: "{{ aws_secret_access_key }}"
+    region: "{{ aws_region }}"
+    format: "{{ aws_format }}"
+  become_user: "{{ ansible_user }}"
+  changed_when: false
