@@ -47,3 +47,11 @@
     format: "{{ aws_format }}"
   become_user: "{{ ansible_user }}"
   changed_when: false
+
+- name: Create a login user
+  user:
+    name: "{{ user }}"
+    password: "{{ password }}"
+    groups:
+      - wheel
+    state: present
