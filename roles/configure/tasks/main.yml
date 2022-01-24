@@ -37,6 +37,12 @@
     dest: /usr/local/bin/
     remote_src: yes
 
+- name: Pull latest OpenShift Installer
+  ansible.builtin.unarchive:
+    src: https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable/openshift-install-linux.tar.gz
+    dest: /usr/local/bin/
+    remote_src: yes
+
 - name: Install AWSCKI
   pip:
     name: awscli
