@@ -65,3 +65,9 @@
 - git:
     repo: https://github.com/afouladi7/openshift_shortcuts.git
     dest: /home/ec2-user/openshift_shortcuts
+
+- name: Start and enable Podman
+  systemd:
+    name: podman
+    state: started
+    enabled: yes
