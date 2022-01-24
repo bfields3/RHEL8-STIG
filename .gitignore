@@ -1,2 +1,4 @@
 vault.yaml
 roles/configure/files/ansible-automation-platform-setup-2.1.0-1.tar.gz
+roles/configure/tasks/main.yml
+roles/configure/files/ansible-tower-setup-latest (1).tar.gz

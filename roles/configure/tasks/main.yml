@@ -25,6 +25,12 @@
     dest: /home/ec2-user/
   ignore_errors: True
 
+- name: Ensure we have the proper Ansible
+  ansible.builtin.unarchive:
+    src: ansible-tower-setup-latest (1).tar.gz
+    dest: /home/ec2-user/
+  ignore_errors: True
+
 - name: Pull latest OpenShift CLI
   ansible.builtin.unarchive:
     src: https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable/openshift-client-linux.tar.gz
