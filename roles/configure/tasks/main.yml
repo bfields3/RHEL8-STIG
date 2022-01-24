@@ -19,13 +19,13 @@
       - python3-pip
     state: present
 
-- name: Ensure we have the proper Ansible
+- name: Copy AAP2 - Ansible Automation Platform
   ansible.builtin.unarchive:
     src: ansible-automation-platform-setup-2.1.0-1.tar.gz
     dest: /home/ec2-user/
   ignore_errors: True
 
-- name: Ensure we have the proper Ansible
+- name: Ansible Tower Installer
   ansible.builtin.unarchive:
     src: ansible-tower-setup-latest (1).tar.gz
     dest: /home/ec2-user/
@@ -57,7 +57,11 @@
 - name: Create a login user
   user:
     name: "{{ user }}"
-    password: "{{ password }}"
+    password: "{{ password | password_hash('sha512') }}"
     groups:
       - wheel
     state: present
+
+- git:
+    repo: https://github.com/afouladi7/openshift_shortcuts.git
+    dest: /home/ec2-user/openshift_shortcuts
