@@ -17,6 +17,7 @@
       - git
       - jq
       - python3-pip
+      - cockpit
     state: present
 
 - name: Copy AAP2 - Ansible Automation Platform
@@ -75,5 +76,11 @@
 - name: Start and enable Podman
   systemd:
     name: podman
+    state: started
+    enabled: yes
+
+- name: Start and enable RHEL Cockpit
+  systemd:
+    name: cockpit.socket
     state: started
     enabled: yes
