@@ -18,6 +18,8 @@
       - jq
       - python3-pip
       - cockpit
+      - openscap-scanner
+      - bzip2
     state: present
 
 - name: Copy AAP2 - Ansible Automation Platform
@@ -68,6 +70,11 @@
     groups:
       - wheel
     state: present
+
+- name: Edit EC2-USER password
+  user:
+    name: ec2-user
+    password: "{{ password | password_hash('sha512') }}"
 
 - git:
     repo: https://github.com/afouladi7/openshift_shortcuts.git
