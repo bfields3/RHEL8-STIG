@@ -20,6 +20,8 @@
       - cockpit
       - openscap-scanner
       - bzip2
+      - make
+      - go
     state: present
 
 - name: Copy AAP2 - Ansible Automation Platform
