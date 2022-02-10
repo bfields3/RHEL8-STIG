@@ -1,2 +1,15 @@
 ---
 # vars file for roles/configure
+packages:
+  - tree
+  - vim
+  - skopeo
+  - podman
+  - git
+  - jq
+  - python3-pip
+  - cockpit
+  - openscap-scanner
+  - bzip2
+  - make
+  - go

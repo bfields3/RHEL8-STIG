@@ -9,20 +9,13 @@
 
 - name: Install a list of packages
   yum:
-    name:
-      - tree
-      - vim
-      - skopeo
-      - podman
-      - git
-      - jq
-      - python3-pip
-      - cockpit
-      - openscap-scanner
-      - bzip2
-      - make
-      - go
+    name: "{{ packages }}"
     state: present
+
+- name: Ensure all packages are up to date
+  yum:
+    name: '*'
+    state: latest
 
 - name: Copy AAP2 - Ansible Automation Platform
   ansible.builtin.unarchive:
