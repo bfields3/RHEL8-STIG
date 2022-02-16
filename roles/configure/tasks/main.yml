@@ -41,7 +41,7 @@
     dest: /usr/local/bin/
     remote_src: yes
 
-- name: Install AWSCKI
+- name: Install AWSCLI
   pip:
     name: awscli
     extra_args: --upgrade
