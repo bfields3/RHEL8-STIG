@@ -68,7 +68,7 @@
 
 - name: Edit EC2-USER password
   user:
-    name: ec2-user
+    name: "{{ ansible_user }}"
     password: "{{ password | password_hash('sha512') }}"
 
 - git:
