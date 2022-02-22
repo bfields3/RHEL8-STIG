@@ -12,6 +12,20 @@
     name: "{{ packages }}"
     state: present
 
+- name: grpcurl
+  ansible.builtin.unarchive:
+    src: https://github.com/fullstorydev/grpcurl/archive/v1.5.1.tar.gz
+    dest: /home/ec2-user/
+    remote_src: yes
+
+- name: Build grpcurl
+  shell: go build
+  args:
+    chdir: /home/ec2-user/grpcurl-1.5.1/cmd/grpcurl/
+
+- name: Move grpcurl
+  shell: mv /home/ec2-user/grpcurl-1.5.1/cmd/grpcurl/grpcurl /usr/bin/
+
 - name: Ensure all packages are up to date
   yum:
     name: '*'
@@ -71,7 +85,8 @@
     name: "{{ ansible_user }}"
     password: "{{ password | password_hash('sha512') }}"
 
-- git:
+- name: Pull in the Git Repo for OCP Shortcuts
+  git:
     repo: https://github.com/afouladi7/openshift_shortcuts.git
     dest: /home/ec2-user/openshift_shortcuts
 
