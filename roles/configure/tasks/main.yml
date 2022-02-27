@@ -55,6 +55,12 @@
     dest: /usr/local/bin/
     remote_src: yes
 
+- name: Pull latest OpenShift Installer Mirroring Tool
+  ansible.builtin.unarchive:
+    src: https://developers.redhat.com/content-gateway/file/pub/openshift-v4/clients/mirror-registry/1.0/mirror-registry.tar.gz
+    dest: /usr/local/bin/
+    remote_src: yes
+
 - name: Install AWSCLI
   pip:
     name: awscli
