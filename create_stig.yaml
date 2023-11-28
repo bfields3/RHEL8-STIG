@@ -5,32 +5,32 @@
   vars_files:
     - vault.yaml
   tasks:
-    - name: Launch instance
-      amazon.aws.ec2:
-         aws_access_key: "{{ aws_access_key_id }}"
-         aws_secret_key: "{{ aws_secret_access_key }}"
-         key_name: "{{ keypair }}"
-         group: "{{ security_group }}"
-         instance_type: "{{ instance_type }}"
-         image: "{{ image }}"
-         wait: true
-         region: "{{ region }}"
-         vpc_subnet_id: subnet-0dfe102c
-         assign_public_ip: yes
-      register: ec2
+    # - name: Launch instance
+    #   amazon.aws.ec2:
+    #      aws_access_key: "{{ aws_access_key_id }}"
+    #      aws_secret_key: "{{ aws_secret_access_key }}"
+    #      key_name: "{{ keypair }}"
+    #      group: "{{ security_group }}"
+    #      instance_type: "{{ instance_type }}"
+    #      image: "{{ image }}"
+    #      wait: true
+    #      region: "{{ region }}"
+    #      vpc_subnet_id: subnet-0dfe102c
+    #      assign_public_ip: yes
+    #   register: ec2
 
-    - name: Add new instance to host group
-      add_host:
-        hostname: "{{ item.public_ip }}"
-        groupname: launched
-      loop: "{{ ec2.instances }}"
+    # - name: Add new instance to host group
+    #   add_host:
+    #     hostname: "{{ item.public_ip }}"
+    #     groupname: launched
+    #   loop: "{{ ec2.instances }}"
 
-    - name: Wait for SSH to come up
-      delegate_to: "{{ item.public_dns_name }}"
-      wait_for_connection:
-        delay: 60
-        timeout: 320
-      loop: "{{ ec2.instances }}"
+    # - name: Wait for SSH to come up
+    #   delegate_to: "{{ item.public_dns_name }}"
+    #   wait_for_connection:
+    #     delay: 60
+    #     timeout: 320
+    #   loop: "{{ ec2.instances }}"
 
 - name: Configure instance(s)
   hosts: launched
