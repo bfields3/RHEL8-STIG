@@ -1,11 +1,11 @@
 ---
 ##This only creates an EC2 and nothing else
-- name: Create EC2
-  hosts: localhost
-  vars_files: 
-    - vault.yaml
-  roles:
-    - aws
+# - name: Create EC2
+#   hosts: localhost
+#   vars_files: 
+#     - vault.yaml
+#   roles:
+#     - aws
 
 - name: Configure instance(s)
   hosts: launched
